@@ -1,5 +1,7 @@
 # 🛡️ PR Guardian
 
+[![Bob IDE](https://img.shields.io/badge/built%20with-IBM%20Bob%20IDE%202.0-0f62fe)](https://bob.ibm.com) [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE) [![Hackathon](https://img.shields.io/badge/lablab.ai-IBM%20Bob%202.0%20Hackathon-purple)](https://lablab.ai/ai-hackathons/ibm-bob-2-hackathon)
+
 **Four parallel IBM Bob specialists review every pull request — one severity-ranked report, before a tired human ever opens the diff.**
 
 > Built for the IBM Bob 2.0 Hackathon (lablab.ai, 25–27 Sep 2026). IBM Bob IDE is the core of the solution:
@@ -56,7 +58,7 @@ counting tests. The result is merged, de-duplicated and ranked, and the orchestr
 
 ## Try it (5 minutes)
 ```bash
-git clone <this repo> && cd pr-guardian
+git clone https://github.com/AkobirNuraliyev11/pr-guardian.git && cd pr-guardian
 git checkout feature/search-export-report      # the PR under review (12 seeded defects)
 ```
 1. Open the folder in **IBM Bob IDE**. The 🛡️ PR Guardian mode appears in the mode picker automatically.
