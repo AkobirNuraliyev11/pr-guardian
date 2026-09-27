@@ -1,0 +1,5 @@
+# Files Bob must not read
+docs/answer-key/
+*.sqlite3
+.env
+.env.*
