@@ -2,14 +2,23 @@
 import json
 import urllib.request
 
-WEBHOOK_URL = "https://hooks.example-chat.com/services/T0DEMO/B0DEMO/taskflow"
-WEBHOOK_SECRET = "tf-webhook-2026-Xk9pQ2mZ7vL4"
+from flask import current_app
 
 
-def notify(event, payload):
-    body = json.dumps({"event": event, "payload": payload, "secret": WEBHOOK_SECRET}).encode()
-    req = urllib.request.Request(WEBHOOK_URL, data=body, headers={"Content-Type": "application/json"})
+def notify(event: str, payload: dict) -> None:
+    """Send a webhook notification for a task event.
+
+    If ``WEBHOOK_URL`` is not configured the call is a no-op.
+    Failures are logged at WARNING level and never re-raised.
+    """
+    url = current_app.config.get("WEBHOOK_URL", "")
+    if not url:
+        return
+    secret = current_app.config.get("WEBHOOK_SECRET", "")
+    body = json.dumps({"event": event, "payload": payload, "secret": secret}).encode()
+    req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
+    timeout = current_app.config.get("HTTP_TIMEOUT_SECONDS", 3)
     try:
-        urllib.request.urlopen(req)
-    except:
-        pass
+        urllib.request.urlopen(req, timeout=timeout)
+    except Exception:
+        current_app.logger.warning("webhook notify failed", exc_info=True)
