@@ -43,6 +43,11 @@ flowchart LR
 focused checklist and only its own job, so the security reviewer never runs out of attention because it was also
 counting tests. The result is merged, de-duplicated and ranked, and the orchestrator is sandboxed to `reports/`.
 
+## Submission
+- **Statements:** [`docs/STATEMENTS.md`](docs/STATEMENTS.md) · **Slides:** [`docs/PR_Guardian_slides.pdf`](docs/PR_Guardian_slides.pdf) · **Cover:** [`docs/cover.png`](docs/cover.png)
+- **Video:** _link added on submission_ · **PR under review:** [#1](https://github.com/AkobirNuraliyev11/pr-guardian/pull/1)
+- **Bob IDE evidence:** [`bob_sessions/`](bob_sessions/)
+
 ## Repository layout
 | Path | Purpose |
 |---|---|
@@ -67,12 +72,15 @@ git checkout feature/search-export-report      # the PR under review (12 seeded 
 4. Switch to Agent mode → `/pr-guardian-fix` → `cd demo-app && python -m pytest -q`.
 
 ## Benchmark
+
+![Four specialist subagents running in parallel](docs/media/parallel_subagents.png)
+
 `feature/search-export-report` plants 12 defects (4 security, 4 performance, 1 test gap, 3 style/architecture).
 The answer key lives in `docs/answer-key/` and is excluded from Bob's view via `.bobignore`.
 
 | Run | Caught | Critical found | Wall-clock | Report |
 |---|---|---|---|---|
-| _(filled in after the recorded run)_ | – / 12 | – / 4 | – | `reports/PR_GUARDIAN_REPORT.md` |
+| Run 1 — 27 Sep 2026, Bob IDE 2.0 | **12 / 12** | **4 / 4** | 42 s for the four specialists (141 s of work, in parallel) · ~0.96 Bobcoin | [`reports/PR_GUARDIAN_REPORT.md`](reports/PR_GUARDIAN_REPORT.md) |
 
 ## Use it on your own repo
 Copy the `.bob/` folder into your project root, add (or `/init`) an `AGENTS.md` describing your conventions,

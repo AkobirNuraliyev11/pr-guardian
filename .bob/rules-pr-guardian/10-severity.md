@@ -8,3 +8,9 @@
 
 When two specialists flag the same file:line, keep the highest severity and list both categories.
 When unsure between two levels, choose the higher one and set Confidence to Medium.
+
+## Tie-breaker (added after run 1, proposed by Bob during the merge step)
+A Style or Architecture finding that has **no runtime impact in isolation** is capped at **Warning**,
+unless the same line is independently exploitable — in which case the Security finding carries the
+Critical and the convention violation is listed under it. Run 1 over-escalated 4 of 12 findings;
+this rule targets those cases without lowering any security severity.
