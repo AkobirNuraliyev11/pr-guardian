@@ -14,10 +14,11 @@ def create_app(test_config: dict | None = None) -> Flask:
 
     db.init_app(app)
 
-    from .routes import tasks, users
+    from .routes import reports, tasks, users
 
     app.register_blueprint(users.bp)
     app.register_blueprint(tasks.bp)
+    app.register_blueprint(reports.bp)
 
     @app.get("/health")
     def health():
